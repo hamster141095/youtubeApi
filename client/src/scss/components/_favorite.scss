@@ -1,0 +1,54 @@
+.ant-list {
+    padding: 2rem 0rem;
+    position: relative;
+
+    &-header {
+        font-weight: normal;
+        font-size: 28px;
+        line-height: 40px;
+        padding: 2rem 0 1rem;
+        border: none !important;
+    }
+
+    &-item {
+        background: #fff !important;
+        height: 4.7rem;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        cursor: pointer;
+        @include transition;
+        margin-top: 0.2rem;
+        padding-left: 9rem !important;
+        &:hover {
+            background: rgba(230, 228, 228, 0.137) !important;
+        }
+
+        &:hover .list__buttons {
+            opacity: 1;
+            @include transition;
+        }
+    }
+}
+
+.list {
+    &__buttons {
+        position: absolute;
+        left: 0;
+        opacity: 0;
+
+        & span {
+            cursor: pointer;
+            z-index: 5;
+            padding-left: 0.6rem;
+            &:hover {
+                color: $activeLink;
+                @include transition;
+            }
+
+            &:last-child:hover {
+                color: red;
+            }
+        }
+    }
+}

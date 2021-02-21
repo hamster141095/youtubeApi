@@ -1,0 +1,57 @@
+@import "../scss/variables";
+@import "../scss/libs/normalize";
+
+@import "../scss/components/all";
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; // 1rem 10px
+    font-weight: 500;
+    font-family: "Roboto", sans-serif !important;
+}
+
+body {
+    background-color: $bg;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    font-family: "Roboto", sans-serif !important;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul,
+li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    background-color: $bg;
+}

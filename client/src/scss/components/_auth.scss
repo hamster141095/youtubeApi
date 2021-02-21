@@ -1,0 +1,127 @@
+.container.container-auth {
+    align-items: center;
+    padding-top: 15vh;
+}
+
+//// form  ////
+
+.auth {
+    &__inner {
+        background: #ffffff;
+        border: 1px solid rgba(39, 39, 39, 0.1);
+        box-sizing: border-box;
+        border-radius: 5px;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    &__title {
+        font-family: "Roboto", sans-serif !important;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 28px;
+        margin-top: 3.2rem;
+    }
+
+    &__notification {
+        margin-top: 1rem;
+        color: $text;
+    }
+
+    &__logo {
+        margin-top: 2rem;
+    }
+
+    &__toggle {
+        font-weight: 400;
+        font-size: 12px;
+        width: 100%;
+        color: rgba(23, 23, 25, 0.5);
+        @include transition;
+        cursor: pointer;
+
+        &:hover {
+            color: $text;
+        }
+    }
+}
+
+.form {
+    &__button {
+        background: #1390e5;
+        border-radius: 5px;
+        & span {
+            padding: 0 2rem;
+
+            // font-family: "Roboto";
+            color: #fff !important;
+            font-weight: normal;
+            font-size: 16px;
+        }
+    }
+}
+
+//// form antd ////
+
+.ant-form-item {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 2rem auto !important;
+    position: relative;
+}
+
+.ant-form-item-control {
+    width: 100%;
+}
+
+.ant-row.ant-form-item.form__item {
+    position: relative;
+}
+
+.ant-form-horizontal .ant-form-item-label {
+    align-self: baseline;
+    padding-left: 16%;
+}
+
+.ant-form-item-label > label {
+    color: rgba(23, 23, 25, 0.3);
+}
+
+.ant-form-item-label
+    > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+    content: "";
+}
+
+.ant-form-item-label > label::after {
+    content: "";
+}
+
+.ant-input.from__input {
+    max-width: 34rem;
+    height: 4.8rem;
+
+    border-radius: 5px;
+
+    &:focus {
+        background: rgba(197, 228, 249, 0.3);
+        border: 1px solid #1390e5;
+    }
+}
+
+.ant-input-affix-wrapper {
+    max-width: 34rem;
+    height: 4.8rem;
+
+    border-radius: 5px;
+}
+
+.ant-input-affix-wrapper-focused,
+.ant-input-affix-wrapper:focus {
+    background: rgba(197, 228, 249, 0.3);
+    border: 1px solid #1390e5;
+}
+
+.ant-input-affix-wrapper > input.ant-input:focus {
+    background: none;
+}

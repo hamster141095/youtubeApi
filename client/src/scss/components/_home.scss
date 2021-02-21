@@ -1,0 +1,209 @@
+.ant-layout-content {
+    background: $bg;
+}
+
+.main-content {
+    max-width: 108rem;
+    margin: 0 auto;
+    &__top {
+        padding-top: 22rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        @include transition;
+        transform: translateY(0px);
+        margin: 0 2rem;
+    }
+}
+
+.main_content__top_active {
+    @include transition;
+    transform: translateY(-20rem);
+    // align-items: flex-start;
+}
+
+.title {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 52px;
+    @include transition;
+
+    &_active {
+        @include transition;
+
+        font-size: 28px;
+        line-height: 40px;
+        transform: translateX(-257%);
+    }
+}
+
+//// search form ////
+
+.search-form {
+    width: 66%;
+    @include transition;
+
+    &__item {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &__action {
+        position: absolute;
+
+        top: 1.5rem;
+        right: 16rem;
+        z-index: 2;
+        cursor: pointer;
+
+        & svg {
+            width: 2.5rem;
+            height: 2.2rem;
+            color: $activeLink;
+        }
+
+        &-close {
+            position: absolute;
+            top: 1.5rem;
+            left: 1rem;
+            z-index: 2;
+            cursor: pointer;
+
+            & svg {
+                width: 2rem;
+                height: 2rem;
+                color: $activeLink;
+            }
+        }
+    }
+
+    &__input {
+        width: 78%;
+        @include transition;
+        height: 5.2rem;
+        padding-bottom: 6px;
+        position: relative;
+        font-size: 20px;
+        line-height: 24px;
+
+        &::placeholder {
+            padding: 0 5rem !important;
+        }
+    }
+
+    &__button {
+        width: 22%;
+        height: 5.2rem;
+        @include transition;
+        & span {
+            color: #fff;
+            font-weight: normal;
+            font-size: 20px;
+            line-height: 24px;
+        }
+    }
+    &__link {
+        color: $activeLink;
+    }
+
+    &__modal {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 1rem;
+        z-index: 3;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: normal;
+        background: #ffffff;
+        border-radius: 5px;
+        top: 3.5rem;
+        right: 6rem;
+        z-index: 2;
+        width: 22rem;
+
+        & span {
+            margin-bottom: 1.5rem;
+        }
+    }
+}
+
+.ant-input {
+    padding: 0 4rem 0rem 4rem !important;
+}
+
+.search_form_active {
+    width: 100%;
+    @include transition;
+}
+
+.search_form__input_active {
+    width: 85.5%;
+    @include transition;
+}
+.search_form__button_active {
+    width: 14.5%;
+    @include transition;
+}
+
+.search_form__action_active {
+    opacity: 1;
+    @include transition;
+}
+
+// .main-content {
+//     @include transition;
+//     transform: translateY(0);
+
+//     &__bottom {
+//         margin: 0 2rem;
+//         transform: translateY(-18rem);
+//         @include transition;
+//     }
+// }
+
+.main-content {
+    &__bottom {
+        margin: 0 2rem;
+        margin-top: -18rem;
+    }
+}
+
+.content {
+    &__inner {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    &__info {
+        display: flex;
+
+        & span {
+            color: rgba(23, 23, 25, 0.3);
+            padding-left: 1rem;
+        }
+    }
+
+    &__main {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 2rem;
+    }
+}
+
+.loader {
+    text-align: center;
+    margin-top: -18rem;
+}

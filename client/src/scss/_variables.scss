@@ -1,0 +1,11 @@
+$bg: #fafafa;
+$modal: rgba(117, 199, 255, 1);
+
+$text: #1390e5;
+$dark: #272727;
+
+$activeLink: #1890ff;
+
+@mixin transition {
+    transition: all 0.5s ease;
+}
