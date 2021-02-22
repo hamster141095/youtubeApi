@@ -53,7 +53,6 @@ router.route("/signin").post(async (req, res) => {
         // 4 send res
         res.cookie("x-access-token", token).status(200).send(getProps(user));
     } catch (error) {
-        console.log(error);
         res.status(400).json({ message: "Error auth", error: error });
     }
 });
@@ -87,9 +86,7 @@ router.route("/addreq").patch(checkLogginIn, async (req, res) => {
         if (!user) return res.status(400).json({ message: "User not found" });
 
         res.status(200).json(getProps(user));
-        console.log(getProps(user));
     } catch (error) {
-        console.log(error);
         res.status(400).json({ message: "Error send request", error: error });
     }
 });
@@ -132,7 +129,6 @@ router.route("/removereq").patch(checkLogginIn, async (req, res) => {
 
         res.status(200).json(getProps(user));
     } catch (error) {
-        console.log(error);
         res.status(400).json({ message: "Error send request", error: error });
     }
 });
