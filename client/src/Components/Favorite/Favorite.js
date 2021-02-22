@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { Col, List, Row, Typography } from "antd";
+import { List } from "antd";
 import {
     PlayCircleOutlined,
     EditOutlined,
@@ -13,9 +13,9 @@ import {
     setCurrentRequest,
 } from "../../redux/actions/userActions";
 import {
-    clearNotification,
     clearYouTubeData,
-    updateUserData,
+    setCurrentRequestText,
+    setOldtRequestText,
 } from "../../redux/actions";
 import PreventAuthRoute from "../../Hoc/PreventAuth";
 import Modal from "../Common/Modal";
@@ -37,6 +37,8 @@ const Favorite = (props) => {
     const runSearchAction = (item) => {
         dispatch(clearYouTubeData());
         dispatch(setCurrentRequest(item.id));
+        dispatch(setCurrentRequestText(item.title));
+        dispatch(setOldtRequestText(item.title));
         props.history.push("/");
         dispatch(getYouTubeData([item.title, item.size, item.sort]));
     };
@@ -100,7 +102,14 @@ const Favorite = (props) => {
                                     )}
                                 />
                             ) : (
-                                "пусто"
+                                <List
+                                    size="large"
+                                    header={
+                                        <div className="list-header">
+                                            Избранное
+                                        </div>
+                                    }
+                                ></List>
                             )}
                         </div>
                     </div>

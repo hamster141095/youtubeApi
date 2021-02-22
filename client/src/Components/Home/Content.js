@@ -1,11 +1,17 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import { CSSTransition } from "react-transition-group";
 import { BarsOutlined, AppstoreOutlined } from "@ant-design/icons";
 
 import ItemCard from "../Common/ItemCard";
 
-const Content = ({ requestText, youtubeData, setItemView, itemView }) => {
+const Content = ({
+    youtubeData,
+    setItemView,
+    itemView,
+    oldRequestTextState,
+}) => {
     return (
         <>
             {youtubeData.data.pageInfo ? (
@@ -13,7 +19,7 @@ const Content = ({ requestText, youtubeData, setItemView, itemView }) => {
                     <div className="content__inner">
                         <div className="content__header">
                             <div className="content__info">
-                                <p>Видео по запросу «{requestText}»</p>
+                                <p>Видео по запросу «{oldRequestTextState}»</p>
                                 <span>
                                     {youtubeData.data.pageInfo
                                         ? youtubeData.data.pageInfo.totalResults

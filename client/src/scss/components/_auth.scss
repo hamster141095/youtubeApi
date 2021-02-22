@@ -59,6 +59,10 @@
             font-size: 16px;
         }
     }
+
+    &__auth .ant-input {
+        padding: 0 1rem !important;
+    }
 }
 
 //// form antd ////

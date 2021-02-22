@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { withRouter, NavLink } from "react-router-dom";
+
 import { Col, Layout, Menu, Row } from "antd";
+
 import { signOutUser } from "../../redux/actions/userActions";
+import { changeTitle } from "../../utils/tools";
+import { clearYouTubeData, setCurrentRequestText } from "../../redux/actions";
 
 const { Header } = Layout;
 
@@ -11,6 +14,17 @@ const HeaderComponent = (props) => {
     const apiPath = props.location.pathname.split("/");
 
     const dispatch = useDispatch();
+
+    const signOutAction = () => {
+        dispatch(signOutUser());
+        dispatch(clearYouTubeData());
+        dispatch(setCurrentRequestText(""));
+    };
+
+    useEffect(() => {
+        document.title = changeTitle(apiPath[1]);
+    }, [apiPath[1]]);
+
     return (
         <>
             <div
@@ -69,7 +83,7 @@ const HeaderComponent = (props) => {
                             <NavLink
                                 className="menu__link"
                                 to="/auth"
-                                onClick={() => dispatch(signOutUser())}
+                                onClick={signOutAction}
                             >
                                 Выйти
                             </NavLink>

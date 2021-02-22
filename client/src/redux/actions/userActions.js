@@ -76,6 +76,7 @@ export const addRequest = (data) => {
 
             dispatch(users.successGlobal("Request added"));
             dispatch(users.updateUserData(request));
+            dispatch(users.clearNotification());
         } catch (error) {
             users.errorGlobal("Упс... Кажется запрос не добавился");
         }

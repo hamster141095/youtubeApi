@@ -3,10 +3,14 @@ import {
     CLEAR_YOUTUBE_DATA,
     SET_IS_LOADING,
     UPDATE_YOUTUBE_DATA,
+    SET_REQUEST_TEXT,
+    SET_OLD_REQUEST_TEXT,
 } from "../types";
 let initialValues = {
     data: {},
     isLoading: null,
+    requestText: "",
+    oldRequestText: "",
 };
 
 export default function itemReducer(state = initialValues, action) {
@@ -26,6 +30,18 @@ export default function itemReducer(state = initialValues, action) {
             return {
                 ...state,
                 isLoading: action.payload,
+            };
+
+        case SET_REQUEST_TEXT:
+            return {
+                ...state,
+                requestText: action.payload,
+            };
+
+        case SET_OLD_REQUEST_TEXT:
+            return {
+                ...state,
+                oldRequestText: action.payload,
             };
 
         case CLEAR_YOUTUBE_DATA:

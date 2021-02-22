@@ -2,7 +2,6 @@ import {
     SIGN_OUT,
     SIGN_IN,
     UPDATE_USER_DATA,
-    AUTH_USER,
     ERROR_GLOBAL,
     SUCCESS_GLOBAL,
     CLEAR_NOTIFICATION,
@@ -10,6 +9,8 @@ import {
     CLEAR_YOUTUBE_DATA,
     UPDATE_YOUTUBE_DATA,
     SET_IS_LOADING,
+    SET_REQUEST_TEXT,
+    SET_OLD_REQUEST_TEXT,
     CLEAR_CURRENT_REQUEST,
     ADD_REQUEST,
     SET_CURRENT_REQUEST,
@@ -76,6 +77,15 @@ export const setIsLoading = (isLoading) => ({
 export const updateYoutubeData = (data) => ({
     type: UPDATE_YOUTUBE_DATA,
     payload: data,
+});
+
+export const setCurrentRequestText = (text) => ({
+    type: SET_REQUEST_TEXT,
+    payload: text,
+});
+export const setOldtRequestText = (text) => ({
+    type: SET_OLD_REQUEST_TEXT,
+    payload: text,
 });
 
 /// request ///

@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, Form, Button, Input } from "antd";
 import { useDispatch, useSelector } from "react-redux";
+
+import { Row, Col, Form, Button, Input } from "antd";
+
 import { registerUser, signInUser } from "../../redux/actions/userActions";
 import { clearNotification } from "../../redux/actions";
 
 const Auth = (props) => {
-    const [tab, setTab] = useState(true);
     const dispatch = useDispatch();
+
+    const [tab, setTab] = useState(true);
+
     const notification = useSelector((state) => state.notificationReducer);
     const isAuth = useSelector((state) => state.userReducer.auth);
 
@@ -39,10 +43,10 @@ const Auth = (props) => {
             <Row className="auth">
                 <Col
                     className="auth__inner"
-                    xs={{ span: 12, offset: 6 }}
+                    xs={{ span: 24, offset: 0 }}
                     sm={{ span: 12, offset: 6 }}
-                    md={{ span: 8, offset: 8 }}
-                    lg={{ span: 8, offset: 8 }}
+                    md={{ span: 10, offset: 7 }}
+                    lg={{ span: 12, offset: 6 }}
                     xl={{ span: 8, offset: 8 }}
                     xxl={{ span: 6, offset: 9 }}
                 >

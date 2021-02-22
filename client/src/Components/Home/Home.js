@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
-import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
-import Moment from "react-moment";
+
+import classNames from "classnames";
+
 import { Layout, Row, Col, Form, Input, Button } from "antd";
 import {
     HeartTwoTone,
@@ -14,39 +15,52 @@ import Modal from "../Common/Modal";
 import PreventAuthRoute from "../../Hoc/PreventAuth";
 import { getYouTubeData } from "../../redux/actions/itemActions";
 import Content from "./Content";
-import { clearYouTubeData } from "../../redux/actions";
+import {
+    clearCurrentRequest,
+    clearYouTubeData,
+    setCurrentRequestText,
+    setOldtRequestText,
+} from "../../redux/actions";
 import Loader from "../Common/Loader";
 
 const Home = () => {
     const [activeClass, setActiveClass] = useState(false);
-
-    const [requestText, setRequestText] = useState(null);
+    let [requestText, setRequestText] = useState(null);
     const [favoriteReq, setFavoriteReq] = useState(false);
-
     const [showModalBig, setShowModalBig] = useState(false);
-
     const [itemView, setItemView] = useState("list");
 
     const youtubeData = useSelector((state) => state.itemReducer);
     const notification = useSelector((state) => state.notificationReducer);
+
     const dispatch = useDispatch();
-    const modalRef = useRef();
-    const isLoading = useSelector((state) => state.itemReducer.isLoading);
-    const currentRequest = useSelector(
+
+    let currentRequest = useSelector(
         (state) => state.userReducer.currentRequest
     );
+    const isLoading = useSelector((state) => state.itemReducer.isLoading);
+    const requestTextState = useSelector(
+        (state) => state.itemReducer.requestText
+    );
+    const oldRequestTextState = useSelector(
+        (state) => state.itemReducer.oldRequestText
+    );
 
+    const modalRef = useRef();
     const action = () => {
         setShowModalBig(true);
     };
 
     const searchAction = () => {
-        if (requestText) {
+        if (requestTextState) {
             dispatch(clearYouTubeData());
-            dispatch(getYouTubeData(requestText));
+            dispatch(getYouTubeData(requestTextState));
+            dispatch(setCurrentRequestText(requestTextState));
+            dispatch(setOldtRequestText(requestTextState));
             if (!activeClass) {
                 setActiveClass(!activeClass);
             }
+            dispatch(clearCurrentRequest());
         }
     };
 
@@ -56,6 +70,14 @@ const Home = () => {
             if (!path.includes(modalRef.current)) {
                 setFavoriteReq(false);
             }
+        }
+    };
+
+    const setActualRequestText = (e) => {
+        if (e) {
+            dispatch(setCurrentRequestText(e.target.value));
+        } else {
+            dispatch(setCurrentRequestText(""));
         }
     };
 
@@ -76,7 +98,7 @@ const Home = () => {
                 {showModalBig ? (
                     <Modal
                         setShowModalBig={setShowModalBig}
-                        requestText={requestText}
+                        requestTextState={requestTextState}
                     />
                 ) : (
                     <Row>
@@ -124,9 +146,7 @@ const Home = () => {
                                                     )}
                                                     onFinish={searchAction}
                                                     initialValues={{
-                                                        title: currentRequest
-                                                            ? currentRequest.title
-                                                            : "",
+                                                        title: requestTextState,
                                                     }}
                                                 >
                                                     <Form.Item
@@ -142,29 +162,25 @@ const Home = () => {
                                                             }
                                                         )}
                                                     >
-                                                        {requestText ? (
+                                                        {requestTextState ? (
                                                             <CloseCircleOutlined
                                                                 onClick={() =>
-                                                                    setRequestText(
+                                                                    setActualRequestText(
                                                                         ""
                                                                     )
                                                                 }
                                                                 className="search-form__action-close"
                                                             />
                                                         ) : null}
+
                                                         <Input
                                                             name="title"
                                                             value={
-                                                                requestText
-                                                                    ? requestText
-                                                                    : currentRequest
-                                                                    ? currentRequest.title
-                                                                    : ""
+                                                                requestTextState
                                                             }
                                                             onChange={(e) =>
-                                                                setRequestText(
-                                                                    e.target
-                                                                        .value
+                                                                setActualRequestText(
+                                                                    e
                                                                 )
                                                             }
                                                             className={classNames(
@@ -179,14 +195,14 @@ const Home = () => {
                                                                 }
                                                             )}
                                                         />
-                                                        {requestText &&
+                                                        {requestTextState &&
                                                         !favoriteReq ? (
                                                             <HeartOutlined
                                                                 onClick={action}
                                                                 className="search-form__action"
                                                             />
                                                         ) : null}
-                                                        {requestText &&
+                                                        {requestTextState &&
                                                         favoriteReq ? (
                                                             <>
                                                                 <HeartTwoTone
@@ -219,6 +235,7 @@ const Home = () => {
                                                                 </div>
                                                             </>
                                                         ) : null}
+
                                                         <Button
                                                             className={classNames(
                                                                 "search-form__button",
@@ -245,7 +262,9 @@ const Home = () => {
                                                 <Loader />
                                             ) : (
                                                 <Content
-                                                    requestText={requestText}
+                                                    oldRequestTextState={
+                                                        oldRequestTextState
+                                                    }
                                                     youtubeData={youtubeData}
                                                     setItemView={setItemView}
                                                     itemView={itemView}

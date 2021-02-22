@@ -94,7 +94,8 @@
 
     &__button {
         width: 22%;
-        height: 5.2rem;
+        height: 5rem;
+        padding-bottom: 1px;
         @include transition;
         & span {
             color: #fff;
@@ -152,18 +153,6 @@
     opacity: 1;
     @include transition;
 }
-
-// .main-content {
-//     @include transition;
-//     transform: translateY(0);
-
-//     &__bottom {
-//         margin: 0 2rem;
-//         transform: translateY(-18rem);
-//         @include transition;
-//     }
-// }
-
 .main-content {
     &__bottom {
         margin: 0 2rem;
@@ -201,9 +190,4 @@
         justify-content: space-between;
         margin-top: 2rem;
     }
-}
-
-.loader {
-    text-align: center;
-    margin-top: -18rem;
 }

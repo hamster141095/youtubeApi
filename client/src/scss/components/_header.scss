@@ -22,8 +22,6 @@
 .menu__link {
     position: relative;
     color: $activeLink !important;
-    // top: 0%;
-    // transform: translate(-50%, -50%);
 
     &::after {
         opacity: 0;

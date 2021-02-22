@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+
 import { v4 as uuid_v4 } from "uuid";
 import {
     Form,
@@ -12,14 +12,16 @@ import {
     Row,
     Col,
 } from "antd";
+
 import { addRequest, editRequest } from "../../redux/actions/userActions";
 import { clearCurrentRequest } from "../../redux/actions";
 
-const Modal = ({ setShowModalBig, requestText, currentRequest }) => {
+const Modal = ({ setShowModalBig, requestTextState, currentRequest }) => {
+    const dispatch = useDispatch();
+
     const [sizeValue, setSizeValue] = useState(
         currentRequest ? currentRequest.size : 12
     );
-    const dispatch = useDispatch();
 
     const onFinishAction = (values) => {
         if (currentRequest) {
@@ -46,7 +48,15 @@ const Modal = ({ setShowModalBig, requestText, currentRequest }) => {
 
     return (
         <Row className="modal">
-            <Col offset={7} span={10} className="modal__inner">
+            <Col
+                className="modal__inner"
+                xs={{ span: 24, offset: 0 }}
+                sm={{ span: 20, offset: 2 }}
+                md={{ span: 20, offset: 2 }}
+                lg={{ span: 12, offset: 6 }}
+                xl={{ span: 10, offset: 7 }}
+                xxl={{ span: 10, offset: 7 }}
+            >
                 <Row>
                     <Col offset={1} span={22}>
                         <h3 className="modal__title">
@@ -62,7 +72,7 @@ const Modal = ({ setShowModalBig, requestText, currentRequest }) => {
                     initialValues={{
                         title: currentRequest
                             ? currentRequest.title
-                            : requestText,
+                            : requestTextState,
                         name: currentRequest ? currentRequest.name : "",
                         sort: currentRequest
                             ? currentRequest.sort
@@ -159,7 +169,7 @@ const Modal = ({ setShowModalBig, requestText, currentRequest }) => {
 
                     <Form.Item className="modal__button">
                         <Row>
-                            <Col span={10} offset={2}>
+                            <Col span={10} offset={1}>
                                 <Button
                                     onClick={() => {
                                         setShowModalBig(false);
@@ -167,7 +177,7 @@ const Modal = ({ setShowModalBig, requestText, currentRequest }) => {
                                     }}
                                     className="button__back"
                                 >
-                                    Не сохранять
+                                    Назад
                                 </Button>
                             </Col>
 

@@ -24,3 +24,15 @@ export const sliceCount = (count = 0) => {
         return Math.ceil(count / 1000000) + " млн ";
     }
 };
+
+export const changeTitle = (apipath) => {
+    if (apipath === "search") {
+        return "Поиск";
+    } else if (apipath === "favorites") {
+        return "Избранное";
+    } else if (apipath === "auth") {
+        return "Регистрация";
+    } else {
+        return "Поиск";
+    }
+};
